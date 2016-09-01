@@ -11,55 +11,57 @@ Install:
 
 Usage:
 
-octets/ports/codes can be represented any number of ways
+  octets / ports / codes can be represented any number of ways
 
-  [{ min : 7, max : 8 },{ min : 9, max : 10 }]
-  { min : 7, max : 10 }
-  [7, 8, 9, 10]
+    [{ min : 7, max : 8 },{ min : 9, max : 10 }]
 
-  7
+    { min : 7, max : 10 }
 
-  var scanner = new require('netscan')(); //may eventually take in options
+    [7, 8, 9, 10]
 
-  // this would scan ip in the range of 192.168.1.[3-163]
-  // with ports of [80, 90, 443, 1337]
-  // and accept response codes of [200, 201, 202, 400, 401, 402, 403]
+    7
 
-  scanner.scan({
+Code :
 
-      protocol : ['http'],
+    var scanner = new require('netscan')(); //may eventually take in options
 
-      octet0: [192],
-      octet1: [168],
-      octet2: [1],
-      octet3: [{min: 3, max: 163}], //range of 7 to 10 inclusive
+    // this would scan ip in the range of 192.168.1.[3-163]
+    // with ports of [80, 90, 443, 1337]
+    // and accept response codes of [200, 201, 202, 400, 401, 402, 403]
 
-      ports: [80, 90, 443, 1337],
+    scanner.scan({
 
-      codes: [200, 201, 202, 400, 401, 402, 403], //only count it if a 200 comes back,
+        protocol : ['http'],
 
-      errors : [], //like 'ETIMEDOUT'
+        octet0: [192],
+        octet1: [168],
+        octet2: [1],
+        octet3: [{min: 3, max: 163}], //range of 7 to 10 inclusive
 
-      paths: '/' || [string], // optional to have it hit a specific endpoint
+        ports: [80, 90, 443, 1337],
 
-      headers: {}, // include the following headers in all request so you can do auth or something,
+        codes: [200, 201, 202, 400, 401, 402, 403], //only count it if a 200 comes back,
 
-      timeout: 10000, //10 seconds timeout)
+        errors : [], //like 'ETIMEDOUT'
 
-      ignoreResponse : true //tells it to not return the body as part of the results
+        paths: '/' || [string], // optional to have it hit a specific endpoint
 
+        headers: {}, // include the following headers in all request so you can do auth or something,
 
-  }, function callback(results){
+        timeout: 10000, //10 seconds timeout)
 
-    /*
-      results will contain response
-      {
-        uri : string,
-        code : httpResponseCode ie. [200],
-        body : httpResponseBody
-      }
-
-    */
+        ignoreResponse : true //tells it to not return the body as part of the results
 
 
-  });
+    }, function callback(results){
+
+      /*
+        results will contain response
+        {
+          uri : string,
+          code : httpResponseCode ie. [200],
+          body : httpResponseBody
+        }
+
+      */
+    });

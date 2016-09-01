@@ -148,9 +148,7 @@ describe('netscan', function(){
             ignoreResponse : true
         }, function(results){
 
-            var data = JSON.stringify(results, null, 3);
-
-            console.log('', data);
+            console.log('results', results);
 
             done();
         });
