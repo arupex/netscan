@@ -30,5 +30,12 @@
   "bugs": {
     "url": "https://github.com/arupex/netscan/issues"
   },
-  "homepage": "https://github.com/arupex/netscan#readme"
+  "homepage": "https://github.com/arupex/netscan#readme",
+  "devDependencies": {
+    "assert-diff": "^1.1.0",
+    "mocha": "^3.0.2"
+  },
+  "dependencies": {
+    "request": "^2.74.0"
+  }
 }
