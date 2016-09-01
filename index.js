@@ -20,8 +20,9 @@ module.exports = (function(){
 
             var promises = [];
 
-            uris.forEach(function(uri) {
+            uris.forEach(function(req) {
 
+                var uri = req.uri;
                 //console.log('uri', uri);
 
                 promises.push(new Promise(function(resolve){
@@ -38,22 +39,27 @@ module.exports = (function(){
                         timeout: cleanupScanOpts.timeout
                     }, function httpResponse(err, resp, body) {
 
+                        var baseResponseObj = {
+                            uri: uri,
+                            protocol : req.protocol,
+                            ip : req.ip,
+                            port : req.port,
+                            path : req.path
+                        };
+
                         if (!err) {
                             if ((codesArray && cleanupScanOpts.codes.indexOf(resp.statusCode) > -1) || (!codesArray)) {
-                                return resolve({
-                                    uri: uri,
-                                    code: resp.statusCode,
-                                    body: cleanupScanOpts.ignoreResponse?undefined:body,
-                                    elapsed: resp.elapsedTime
-                                });
+                                baseResponseObj.code = resp.statusCode;
+                                baseResponseObj.body = cleanupScanOpts.ignoreResponse?undefined:body;
+                                baseResponseObj.elapsed = resp.elapsedTime;
+
+                                return resolve(baseResponseObj);
                             }
                         }
                         else {
                             if (Array.isArray(cleanupScanOpts.errors) && cleanupScanOpts.errors.indexOf(err.code) > -1) {
-                                return resolve({
-                                    uri: uri,
-                                    code: err.code
-                                });
+                                baseResponseObj.code = err.code;
+                                return resolve(baseResponseObj);
                             }
                         }
                         resolve(undefined);

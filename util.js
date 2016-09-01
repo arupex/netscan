@@ -114,7 +114,14 @@ module.exports = (function(){
 
                                 cleanOpts.paths.forEach(function (path) {
 
-                                    urls.push(protocol + '://' + octet0 + OCTET_SEPERATOR + octet1 + OCTET_SEPERATOR + octet2 + OCTET_SEPERATOR + octet3 + PORT_SEPERATOR + port + path);
+                                    var ip = octet0 + OCTET_SEPERATOR + octet1 + OCTET_SEPERATOR + octet2 + OCTET_SEPERATOR + octet3;
+                                    urls.push({
+                                        uri : protocol + '://' + ip + PORT_SEPERATOR + port + path,
+                                        protocol : protocol,
+                                        ip : ip,
+                                        port : port,
+                                        path : path
+                                    });
 
                                 });
 
