@@ -1,0 +1,34 @@
+{
+  "name": "netscan",
+  "version": "1.0.0",
+  "description": "ip and port scanner",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arupex/netscan.git"
+  },
+  "keywords": [
+    "net",
+    "scan",
+    "port",
+    "ip",
+    "scanner",
+    "path",
+    "octet",
+    "timeout",
+    "http",
+    "code"
+  ],
+  "author": "dirwin517",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/arupex/netscan/issues"
+  },
+  "homepage": "https://github.com/arupex/netscan#readme"
+}
