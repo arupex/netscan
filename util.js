@@ -84,6 +84,8 @@ module.exports = (function(){
 
             headers : opts.headers,
 
+            auth : opts.auth,
+
             timeout : opts.timeout,
 
             ignoreResponse : opts.ignoreResponse
